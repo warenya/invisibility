@@ -9,6 +9,7 @@ def invisibility():
 
     vid = cv2.VideoCapture(0)
 
+    #Time for camera to capture the background
     time.sleep(2)
     count = 0
     bg = None
@@ -33,13 +34,14 @@ def invisibility():
         img = np.flip(img, axis = 1)
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
+        #Adjust according to skin color
         lower_skin1 = np.array([0, 0, 70])
         upper_skin1 = np.array([100, 255, 255])
         mask1 = cv2.inRange(hsv, lower_skin1, upper_skin1)
 
-        lower_red2 = np.array([100, 150, 0])
-        upper_red2 = np.array([140, 255, 255])
-        mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
+        lower_skin2 = np.array([100, 150, 0])
+        upper_skin2 = np.array([140, 255, 255])
+        mask2 = cv2.inRange(hsv, lower_skin2, upper_skin2)
 
         mask = mask1 + mask2
 
